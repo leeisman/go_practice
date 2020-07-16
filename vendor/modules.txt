@@ -1,0 +1,9 @@
+# bou.ke/monkey v1.0.2
+## explicit
+bou.ke/monkey
+# github.com/rs/zerolog v1.19.0
+## explicit
+github.com/rs/zerolog
+github.com/rs/zerolog/internal/cbor
+github.com/rs/zerolog/internal/json
+github.com/rs/zerolog/log
