@@ -8,6 +8,7 @@ type Test interface {
 }
 
 type test struct {
+	GOOD string
 }
 
 func (t *test) Test1() {
@@ -30,7 +31,7 @@ func (t *test2) Test2() {
 	log.Print("test2 Test2")
 }
 func main() {
-	testObj := &test2{}
+	testObj := &test2{test:test{GOOD: "test"}}
 	testObj.Test1()
 	testObj.Test2()
 }

@@ -1,6 +1,8 @@
 package implement
 
-import "log"
+import (
+	"log"
+)
 
 type DirectHandler interface {
 	CheckDirectLink(info string, title string) (bool, error)
@@ -33,7 +35,4 @@ func (d *Handler) CheckDirectLink(info string, title string) (bool, error) {
 	log.Print("origin info: ", info)
 	log.Print("origin title: ", title)
 	return false, nil
-}
-
-func main() {
 }
