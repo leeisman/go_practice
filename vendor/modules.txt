@@ -7,3 +7,6 @@ github.com/rs/zerolog
 github.com/rs/zerolog/internal/cbor
 github.com/rs/zerolog/internal/json
 github.com/rs/zerolog/log
+# gopkg.in/vansante/go-ffprobe.v2 v2.0.2
+## explicit
+gopkg.in/vansante/go-ffprobe.v2

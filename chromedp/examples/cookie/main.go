@@ -7,13 +7,12 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"log"
-	"net/http"
-	"time"
-
 	"github.com/chromedp/cdproto/cdp"
 	"github.com/chromedp/cdproto/network"
 	"github.com/chromedp/chromedp"
+	"log"
+	"net/http"
+	"time"
 )
 
 var flagPort = flag.Int("port", 8544, "port")
@@ -40,6 +39,7 @@ func main() {
 	}
 
 	log.Printf("chrome received cookies: %s", res)
+	time.Sleep(time.Second * 10000)
 }
 
 // cookieServer creates a simple HTTP server that logs any passed cookies.
