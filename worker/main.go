@@ -2,85 +2,27 @@ package main
 
 import (
 	"context"
-	"fmt"
-	"time"
+	"golang_practice/custom_log/log"
+	"golang_practice/worker/pool"
+	"sync"
 )
 
 func main() {
-	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
-	defer cancel()
-	w := NewWorker(ctx, 2)
-	i := 0
-	w.DoAsync(NewJob(func(ctx context.Context) {
-		i++
-		fmt.Println("!!!!! time.Sleep(3 * time.Second)")
-		time.Sleep(3 * time.Second)
-	}))
-	w.DoAsync(NewJob(func(ctx context.Context) {
-		i++
-		fmt.Println("!!!!! time.Sleep(3 * time.Second)")
-		time.Sleep(3 * time.Second)
-	}))
-	w.DoAsync(NewJob(func(ctx context.Context) {
-		i++
-		fmt.Println("!!!!! time.Sleep(3 * time.Second)")
-		time.Sleep(3 * time.Second)
-	}))
-	w.DoAsync(NewJob(func(ctx context.Context) {
-		i++
-		fmt.Println("!!!!! time.Sleep(3 * time.Second)")
-		time.Sleep(3 * time.Second)
-	}))
-	fmt.Println(i)
-	time.Sleep(5 * time.Second)
-}
-
-type Worker struct {
-	size    int
-	chanJob chan *Job
-}
-
-func NewWorker(ctx context.Context, size int) *Worker {
-	w := &Worker{
-		chanJob: make(chan *Job),
-		size:    size,
+	p1 := "p1"
+	p2 := 2
+	wg := &sync.WaitGroup{}
+	fn := func(p1 string, p2 int, wg *sync.WaitGroup) func(ctx context.Context) {
+		return func(ctx context.Context) {
+			defer wg.Done()
+			log.Print("p1: ", p1)
+			log.Print("p2: ", p2)
+		}
 	}
-	go w.work(ctx)
-	return w
-}
 
-func (w *Worker) DoAsync(job *Job) {
-	w.chanJob <- job
-}
-
-func (w *Worker) DoSync(job *Job) {
-	w.chanJob <- job
-	<-job.finish
-}
-
-type Job struct {
-	fn     func(ctx context.Context)
-	finish chan struct{}
-}
-
-func NewJob(fn func(ctx context.Context)) *Job {
-	return &Job{
-		fn:     fn,
-		finish: make(chan struct{}),
+	for i := 0; i <= 5; i++ {
+		wg.Add(1)
+		pool.DefaultWorker.DoAsync(pool.NewJob(fn(p1, p2, wg)))
 	}
-}
 
-func (w *Worker) work(ctx context.Context) {
-	for i := 0; i < w.size; i++ {
-		go func() {
-			for job := range w.chanJob {
-				select {
-				case <-ctx.Done():
-				default:
-					job.fn(ctx)
-				}
-				close(job.finish)
-			}
-		}()
-	}
+	wg.Wait()
 }
