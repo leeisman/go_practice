@@ -2,27 +2,50 @@ package main
 
 import (
 	"context"
-	"golang_practice/custom_log/log"
-	"golang_practice/worker/pool"
+	worker "golang_practice/worker/pool"
+	"log"
 	"sync"
+	"time"
 )
 
 func main() {
-	p1 := "p1"
-	p2 := 2
-	wg := &sync.WaitGroup{}
-	fn := func(p1 string, p2 int, wg *sync.WaitGroup) func(ctx context.Context) {
-		return func(ctx context.Context) {
-			defer wg.Done()
-			log.Print("p1: ", p1)
-			log.Print("p2: ", p2)
+	go func() {
+		log.Print("!!!!!! download task")
+		worker.SetSize(2)
+		wg := &sync.WaitGroup{}
+
+		for i := 0; i < 10; i++ {
+			wg.Add(1)
+			fn := func(i int) func(ctx context.Context) {
+				return func(ctx context.Context) {
+					time.Sleep(time.Second * 5)
+					log.Print("download ts ", i)
+					wg.Done()
+				}
+			}
+			job := worker.NewJob(fn(i))
+			worker.DefaultWorker.DoAsync(job)
+			log.Print("add download job ", i)
 		}
-	}
+		wg.Wait()
+	}()
+	time.Sleep(time.Second * 5)
+	log.Print("!!!!!! get info task")
+	go func() {
+		wg := &sync.WaitGroup{}
+		for i := 0; i < 2; i++ {
+			wg.Add(1)
+			fn := func(i int) func(ctx context.Context) {
+				return func(ctx context.Context) {
+					log.Print("get info ", i)
+					wg.Done()
+				}
+			}
+			job := worker.NewJob(fn(i))
+			worker.DefaultWorker.DoAsync(job)
+		}
+		wg.Wait()
+	}()
 
-	for i := 0; i <= 5; i++ {
-		wg.Add(1)
-		pool.DefaultWorker.DoAsync(pool.NewJob(fn(p1, p2, wg)))
-	}
-
-	wg.Wait()
+	time.Sleep(time.Second * 1000)
 }

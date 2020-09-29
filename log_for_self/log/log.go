@@ -15,8 +15,8 @@ type ll struct {
 }
 type level int
 
-var infoLevel level = 1
-var debugLevel level = 2
+var debugLevel level = 1
+var infoLevel level = 2
 var errorLevel level = 3
 
 func init() {

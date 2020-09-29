@@ -1,42 +1,13 @@
-package pool
+package worker
 
 import (
 	"context"
-	"fmt"
-	"golang_practice/custom_log/log"
-	"time"
+	"github.com/rs/zerolog"
+	"log"
 )
 
-var DefaultWorker = NewWorker(context.Background(), 2)
-
-func example() {
-	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
-	defer cancel()
-	w := NewWorker(ctx, 2)
-	i := 0
-	w.DoAsync(NewJob(func(ctx context.Context) {
-		i++
-		fmt.Println("!!!!! time.Sleep(3 * time.Second)")
-		time.Sleep(3 * time.Second)
-	}))
-	w.DoAsync(NewJob(func(ctx context.Context) {
-		i++
-		fmt.Println("!!!!! time.Sleep(3 * time.Second)")
-		time.Sleep(3 * time.Second)
-	}))
-	w.DoAsync(NewJob(func(ctx context.Context) {
-		i++
-		fmt.Println("!!!!! time.Sleep(3 * time.Second)")
-		time.Sleep(3 * time.Second)
-	}))
-	w.DoAsync(NewJob(func(ctx context.Context) {
-		i++
-		fmt.Println("!!!!! time.Sleep(3 * time.Second)")
-		time.Sleep(3 * time.Second)
-	}))
-	fmt.Println(i)
-	time.Sleep(5 * time.Second)
-}
+var DefaultWorker = NewWorker(context.Background(), 100)
+var logger = zerolog.New(log.Writer()).With().Timestamp().Str("tag", "go-log").Logger()
 
 type Worker struct {
 	size    int
@@ -82,15 +53,25 @@ func (w *Worker) work(ctx context.Context) {
 			for {
 				select {
 				case <-ctx.Done():
-					log.Print("workerNo: ", workerNo, " done!")
+					//logger.Print("workerNo: ", workerNo, " done!")
 					return
 				case job := <-w.chanJob:
-					log.Print("workerNo: ", workerNo, " doing job!")
+					//logger.Print("workerNo: ", workerNo, " doing job!")
 					job.fn(ctx)
-					log.Print("workerNo: ", workerNo, " job done!")
+					//logger.Print("workerNo: ", workerNo, " job done!")
 					close(job.finish)
 				}
 			}
 		}(i)
 	}
+}
+
+func SetLogger(ll zerolog.Logger) {
+	logger = ll
+}
+
+func SetSize(size int) {
+	DefaultWorker.Cancel()
+	logger.Print("worker cancel all job")
+	DefaultWorker = NewWorker(context.Background(), size)
 }
