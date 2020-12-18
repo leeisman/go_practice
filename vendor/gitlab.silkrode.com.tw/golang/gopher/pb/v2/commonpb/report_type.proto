@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package commonpbv2;
+
+option go_package = "gitlab.silkrode.com.tw/golang/gopher/pb/v2/commonpb";
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+option (gogoproto.goproto_registration) = true;
+
+enum ReportType {
+    option (gogoproto.goproto_enum_prefix) = false;
+    REPORT_TYPE_UNKNOWN                    = 0;
+    REPORT_TYPE_DAILY                      = 1;  // 日報
+    REPORT_TYPE_MONTHLY                    = 2;  // 月報
+}

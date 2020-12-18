@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package commonpbv2;
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+option go_package                       = "gitlab.silkrode.com.tw/golang/gopher/pb/v2/commonpb";
+option (gogoproto.goproto_registration) = true;
+
+enum DeviceType {
+    option (gogoproto.goproto_enum_prefix) = false;
+    DEVICE_TYPE_UNKNOWN                    = 0;
+    DEVICE_TYPE_REAL                       = 1;
+    DEVICE_TYPE_WALL                       = 2;
+    DEVICE_TYPE_FISH                       = 3;
+    DEVICE_TYPE_FACE_RECOGNITION           = 4;
+    DEVICE_TYPE_CUSTOMIZED_MANAGER         = 5;
+}

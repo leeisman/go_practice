@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package commonpbv2;
+
+option go_package = "gitlab.silkrode.com.tw/golang/gopher/pb/v2/commonpb";
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+option (gogoproto.goproto_registration) = true;
+
+enum AgentRole {
+    option (gogoproto.goproto_enum_prefix)        = false;
+    AGENT_ROLE_UNKNOWN                            = 0;
+    AGENT_ROLE_OPERATOR                           = 1;   // 管理員
+    AGENT_ROLE_LIMITED_OPERATOR                   = 2;   // 限制權限的管理員代號
+    AGENT_ROLE_AGENT                              = 3;   // 代理
+    AGENT_ROLE_CUSTOM_SERVICE                     = 4;   // 客服
+    AGENT_ROLE_DIVIDE_COMMISSION                  = 5;   // 上分作業員
+    AGENT_ROLE_OPEN_ACCOUNT                       = 6;   // 開戶作業員
+    AGENT_ROLE_DIVIDE_COMMISSION_AND_OPEN_ACCOUNT = 7;   // 上分與開戶作業員
+    AGENT_ROLE_FISH                               = 8;   // Fish
+    AGENT_ROLE_MERCHANT                           = 9;   // 商戶
+    AGENT_ROLE_TREASURER                          = 11;  // 財務
+    AGENT_ROLE_FINANCIAL_AUDITOR                  = 12;  // 財務審計
+    AGENT_ROLE_ADVANCED_TREASURER                 = 13;  // 高級財務
+    AGENT_ROLE_UNFREEZER                          = 14;  //解冻员
+}
+
+enum AgentStatus {
+    option (gogoproto.goproto_enum_prefix) = false;
+    AGENT_STATUS_UNKNOWN                   = 0;
+    AGENT_STATUS_ENABLED                   = 1;  // 啟用
+    AGENT_STATUS_DISABLED                  = 2;  // 停用
+}

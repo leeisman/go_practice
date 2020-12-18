@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package commonpbv2;
+option go_package = "gitlab.silkrode.com.tw/golang/gopher/pb/v2/commonpb";
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+option (gogoproto.goproto_registration) = true;
+
+enum PaymentMode {
+    option (gogoproto.goproto_enum_prefix) = false;
+    PAYMENT_MODE_UNKNOW                    = 0;
+    PAYMENT_MODE_REC                       = 1;
+    PAYMENT_MODE_PAY                       = 2;
+}

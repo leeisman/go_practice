@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package commonpbv2;
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+option go_package                       = "gitlab.silkrode.com.tw/golang/gopher/pb/v2/commonpb";
+option (gogoproto.goproto_registration) = true;
+
+enum OrderStatus {
+    option (gogoproto.goproto_enum_prefix) = false;
+    ORDER_STATUS_UNKNOWN                   = 0;
+    ORDER_STATUS_PROCESSING                = 1;  // 處理中/掛單中...etc
+    ORDER_STATUS_SUCCESS                   = 2;
+    ORDER_STATUS_FAILED                    = 3;  // 交易失败
+    ORDER_STATUS_NEED_CONFIRMED            = 4;
+    ORDER_STATUS_CANCELED                  = 5;
+    ORDER_STATUS_INMATCHING                = 6;  // 撮合中
+    ORDER_STATUS_PARTICAL_COMPLETED        = 7;  // 部分撮合完成
+    ORDER_STATUS_COMPLETED                 = 8;  // 全部撮合完成
+    ORDER_STATUS_INQUEUE                   = 9;  // 訂單在queue裡
+}
