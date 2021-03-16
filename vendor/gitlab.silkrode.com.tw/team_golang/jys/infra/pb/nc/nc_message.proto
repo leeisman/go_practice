@@ -87,6 +87,13 @@ message RecordReadUserNotificationReq {
     repeated int64 user_notification_ids    = 2 [(gogoproto.customname) = "UserNotificationIDs"];
 }
 
+message RecordReadUserNotificationALLReq {
+    option (gogoproto.goproto_unrecognized) = false;
+    option (gogoproto.goproto_unkeyed)      = false;
+    option (gogoproto.goproto_sizecache)    = false;
+    int64 user_id                           = 1 [(gogoproto.customname) = "UserID"];
+}
+
 message ListUserNotificationReq {
     option (gogoproto.goproto_unrecognized)   = false;
     option (gogoproto.goproto_unkeyed)        = false;

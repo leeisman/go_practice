@@ -21,5 +21,6 @@ service NCService {
     rpc UpdateNotification(UpdateNotificationReq) returns (google.protobuf.Empty);
     rpc DeleteNotification(DeleteNotificationReq) returns (google.protobuf.Empty);
     rpc RecordReadUserNotification(RecordReadUserNotificationReq) returns (google.protobuf.Empty);
+    rpc RecordReadUserNotificationALL(RecordReadUserNotificationALLReq) returns (google.protobuf.Empty);
     rpc ListUserNotification(ListUserNotificationReq) returns (ListUserNotificationResp);
 }

@@ -44,9 +44,8 @@ github.com/spf13/cobra
 # github.com/spf13/pflag v1.0.5
 github.com/spf13/pflag
 # gitlab.silkrode.com.tw/golang/gopher v0.1.130
-## explicit
 gitlab.silkrode.com.tw/golang/gopher/pb/v2/commonpb
-# gitlab.silkrode.com.tw/team_golang/jys/infra v0.0.0-00010101000000-000000000000 => gitlab.silkrode.com.tw/team_golang/jys/infra.git v0.1.137
+# gitlab.silkrode.com.tw/team_golang/jys/infra v0.0.0-00010101000000-000000000000 => gitlab.silkrode.com.tw/team_golang/jys/infra.git v0.1.159
 ## explicit
 gitlab.silkrode.com.tw/team_golang/jys/infra/pb/nc
 # go.uber.org/atomic v1.7.0
@@ -162,4 +161,4 @@ gorm.io/gorm/clause
 gorm.io/gorm/logger
 gorm.io/gorm/schema
 gorm.io/gorm/utils
-# gitlab.silkrode.com.tw/team_golang/jys/infra => gitlab.silkrode.com.tw/team_golang/jys/infra.git v0.1.137
+# gitlab.silkrode.com.tw/team_golang/jys/infra => gitlab.silkrode.com.tw/team_golang/jys/infra.git v0.1.159

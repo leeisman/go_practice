@@ -620,8 +620,8 @@ github.com/zenazn/goji v0.9.0/go.mod h1:7S9M489iMyHBNxwZnk9/EHS098H4/F6TATF2mIxt
 gitlab.silkrode.com.tw/golang/errors v0.0.16/go.mod h1:hkAyOAVte1lj4F7YsgdBXCWvoH0/2YUxGrExojbZp7g=
 gitlab.silkrode.com.tw/golang/gopher v0.1.130 h1:xnwLdj4ldFEp52h8XsRdMH2JuJMLZ/BeToi29ORW8P4=
 gitlab.silkrode.com.tw/golang/gopher v0.1.130/go.mod h1:nrM9iKdJv9MiHKGjnys4aDBLsNVPxwXBNLypAML8N14=
-gitlab.silkrode.com.tw/team_golang/jys/infra.git v0.1.137 h1:0zmhhAfH8qQJmmE9WCaMR1YmyevGc7dWivvyMqtVETg=
-gitlab.silkrode.com.tw/team_golang/jys/infra.git v0.1.137/go.mod h1:wEIajqPL2uXfRzGRd5GtJX4PrWCxhgEtymrX1vQtebY=
+gitlab.silkrode.com.tw/team_golang/jys/infra.git v0.1.159 h1:zbz2r5NH+3MwmCeoC0/hfxSheqCjrlujyL0vW+xRRyI=
+gitlab.silkrode.com.tw/team_golang/jys/infra.git v0.1.159/go.mod h1:wEIajqPL2uXfRzGRd5GtJX4PrWCxhgEtymrX1vQtebY=
 go.etcd.io/bbolt v1.3.2/go.mod h1:IbVyRI1SCnLcuJnV2u8VeU0CEYM7e686BmAb1XKL+uU=
 go.etcd.io/bbolt v1.3.3/go.mod h1:IbVyRI1SCnLcuJnV2u8VeU0CEYM7e686BmAb1XKL+uU=
 go.etcd.io/bbolt v1.3.5/go.mod h1:G5EMThwa9y8QZGBClrRx5EY+Yw9kAhnjy3bSjsnlVTQ=
